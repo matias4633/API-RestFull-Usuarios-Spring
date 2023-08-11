@@ -2,11 +2,12 @@ package com.usuarios.service;
 
 import com.usuarios.model.UsuarioModel;
 import com.usuarios.repository.UsuarioRepository;
+import com.usuarios.wrapper.UsuarioWrapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -16,6 +17,10 @@ public class UsuarioService {
 
     public ArrayList<UsuarioModel> obtenerUsuarios(){
         return (ArrayList<UsuarioModel>) usuarioRepository.findAll();
+    }
+
+    public ArrayList<UsuarioModel> obtenerUsuarios(Specification<UsuarioModel> condicioness){
+        return (ArrayList<UsuarioModel>) usuarioRepository.findAll(condicioness);
     }
     public UsuarioModel guardarUsuario(UsuarioModel usuarioModel){
         return (UsuarioModel) usuarioRepository.save(usuarioModel);
